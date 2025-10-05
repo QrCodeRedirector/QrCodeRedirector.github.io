@@ -5,7 +5,7 @@
   <meta http-equiv="refresh" content="1; url=https://instagram.com/thib_gty">
   <title>Redirection…</title>
 
-  <!-- Google Analytics GA4 -->
+  <!-- Google Analytics GA4 (intact) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XGP68DHQ7K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -15,7 +15,6 @@
   </script>
   
   <style>
-    /* Styles pour centrer le texte et le mettre en forme */
     body {
       display: flex;
       justify-content: center;
@@ -33,21 +32,18 @@
   </style>
 </head>
 <body>
-  <!-- Le texte de chargement sera affiché ici -->
   <div id="loading-text">Redirection</div>
 
   <script>
     const loadingText = document.getElementById('loading-text');
     let dotCount = 0;
     
-    // Met à jour le texte toutes les 500 millisecondes
+    // L'intervalle est réduit à 150ms pour une animation plus rapide
     setInterval(() => {
-      // Fait cycler le nombre de points de 0 à 3
       dotCount = (dotCount + 1) % 4; 
-      // Répète le caractère '.' selon dotCount
       const dots = '.'.repeat(dotCount);
       loadingText.textContent = 'Redirection' + dots;
-    }, 500);
+    }, 150); // Vitesse augmentée ici
   </script>
 </body>
 </html>
