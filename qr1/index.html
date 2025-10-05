@@ -13,8 +13,41 @@
     gtag('js', new Date());
     gtag('config', 'G-XGP68DHQ7K');
   </script>
+  
+  <style>
+    /* Styles pour centrer le texte et le mettre en forme */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    #loading-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-  Redirection en cours…
+  <!-- Le texte de chargement sera affiché ici -->
+  <div id="loading-text">Redirection</div>
+
+  <script>
+    const loadingText = document.getElementById('loading-text');
+    let dotCount = 0;
+    
+    // Met à jour le texte toutes les 500 millisecondes
+    setInterval(() => {
+      // Fait cycler le nombre de points de 0 à 3
+      dotCount = (dotCount + 1) % 4; 
+      // Répète le caractère '.' selon dotCount
+      const dots = '.'.repeat(dotCount);
+      loadingText.textContent = 'Redirection' + dots;
+    }, 500);
+  </script>
 </body>
 </html>
