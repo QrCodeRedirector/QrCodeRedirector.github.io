@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="1; url=https://instagram.com/arthur_.grg">
+  <title>Redirection…</title>
+
+  <!-- Google Analytics GA4 (intact) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XGP68DHQ7K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XGP68DHQ7K');
+  </script>
+  
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    #loading-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-text">Redirection</div>
+
+  <script>
+    const loadingText = document.getElementById('loading-text');
+    let dotCount = 0;
+    
+    // L'intervalle est réduit à 150ms pour une animation plus rapide
+    setInterval(() => {
+      dotCount = (dotCount + 1) % 4; 
+      const dots = '.'.repeat(dotCount);
+      loadingText.textContent = 'Redirection' + dots;
+    }, 150); // Vitesse augmentée ici
+  </script>
+</body>
+</html>
