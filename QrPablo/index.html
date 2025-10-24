@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="1; url=https://instagram.com/pablo.cmpl">
+  <title>Redirection</title>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    #loading-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-text">Redirection</div>
+
+  <script>
+    const loadingText = document.getElementById('loading-text');
+    let dotCount = 0;
+    
+    // Animation des points de suspension (plus rapide pour un effet fluide)
+    setInterval(() => {
+      dotCount = (dotCount + 1) % 4;
+      const dots = '.'.repeat(dotCount);
+      loadingText.textContent = 'Redirection' + dots;
+    }, 150);
+  </script>
+</body>
+</html>
