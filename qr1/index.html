@@ -10,17 +10,19 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    // Configuration avec callback pour la redirection
+    // Configuration modifiée pour inclure la redirection après l'envoi des données
     gtag('config', 'G-XGP68DHQ7K', {
       'event_callback': function() {
         window.location.href = "https://instagram.com/thi_box";
       }
     });
 
-    // Sécurité : Si Google Analytics met trop de temps (plus de 3s), on redirige quand même
+    // Sécurité : redirection forcée après 2.5 secondes si le tag est bloqué (AdBlock, etc.)
     setTimeout(function() {
-      window.location.href = "https://instagram.com/thi_box";
-    }, 3000);
+      if (window.location.hostname !== 'instagram.com') {
+        window.location.href = "https://instagram.com/thi_box";
+      }
+    }, 2500);
   </script>
   
   <style>
@@ -44,6 +46,7 @@
   <div id="loading-text">Redirection</div>
 
   <script>
+    // Animation des points de suspension
     const loadingText = document.getElementById('loading-text');
     let dotCount = 0;
     
