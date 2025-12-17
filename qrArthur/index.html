@@ -2,16 +2,27 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="1; url=https://instagram.com/arthur_.grg">
   <title>Redirection</title>
 
-  <!-- Google Analytics GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CDBTZ8B3CX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-CDBTZ8B3CX');
+
+    // On configure la redirection pour qu'elle s'exécute APRÈS l'envoi des données
+    gtag('config', 'G-CDBTZ8B3CX', {
+      'event_callback': function() {
+        window.location.href = "https://instagram.com/arthur_.grg";
+      }
+    });
+
+    // Sécurité : Redirection forcée après 2.5 secondes si le script est bloqué
+    setTimeout(function() {
+      if (window.location.hostname !== 'instagram.com') {
+        window.location.href = "https://instagram.com/arthur_.grg";
+      }
+    }, 2500);
   </script>
 
   <style>
@@ -38,7 +49,7 @@
     const loadingText = document.getElementById('loading-text');
     let dotCount = 0;
     
-    // Animation des points de suspension (plus rapide pour un effet fluide)
+    // Animation des points de suspension
     setInterval(() => {
       dotCount = (dotCount + 1) % 4;
       const dots = '.'.repeat(dotCount);
