@@ -2,16 +2,25 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="1; url=https://instagram.com/thi_box">
   <title>Redirection…</title>
 
-  <!-- Google Analytics GA4 (intact) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XGP68DHQ7K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XGP68DHQ7K');
+
+    // Configuration avec callback pour la redirection
+    gtag('config', 'G-XGP68DHQ7K', {
+      'event_callback': function() {
+        window.location.href = "https://instagram.com/thi_box";
+      }
+    });
+
+    // Sécurité : Si Google Analytics met trop de temps (plus de 3s), on redirige quand même
+    setTimeout(function() {
+      window.location.href = "https://instagram.com/thi_box";
+    }, 3000);
   </script>
   
   <style>
@@ -38,12 +47,11 @@
     const loadingText = document.getElementById('loading-text');
     let dotCount = 0;
     
-    // L'intervalle est réduit à 150ms pour une animation plus rapide
     setInterval(() => {
       dotCount = (dotCount + 1) % 4; 
       const dots = '.'.repeat(dotCount);
       loadingText.textContent = 'Redirection' + dots;
-    }, 150); // Vitesse augmentée ici
+    }, 150);
   </script>
 </body>
 </html>
