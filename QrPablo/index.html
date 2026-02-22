@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Redirection...</title>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-LGJLQJF3LR"></script>
@@ -10,41 +11,65 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    // Configuration modifiée pour inclure la redirection APRÈS l'envoi des données
+    // URL de destination pour QrPablo
+    const destinationUrl = "https://www.instagram.com/pablo.cmpl?igsh=MWtpc3I4bWgzZThvOQ==";
+
+    // 1. Sécurité : Timer de secours au cas où le tag Google est bloqué
+    const fallbackTimer = setTimeout(function() {
+      window.location.href = destinationUrl;
+    }, 2500);
+
+    // 2. Configuration principale : redirection APRÈS l'envoi des données au tracker
     gtag('config', 'G-LGJLQJF3LR', {
       'event_callback': function() {
-        window.location.href = "https://www.instagram.com/pablo.cmpl?igsh=MWtpc3I4bWgzZThvOQ==";
+        // IMPORTANT : On annule le timer de secours pour éviter une double redirection
+        clearTimeout(fallbackTimer);
+        window.location.href = destinationUrl;
       }
     });
-
-    // Sécurité : redirection forcée après 2.5 secondes si le tag Google est bloqué (AdBlock, etc.)
-    setTimeout(function() {
-      window.location.href = "https://www.instagram.com/pablo.cmpl?igsh=MWtpc3I4bWgzZThvOQ==";
-    }, 2500);
   </script>
   
   <style>
     body {
       display: flex;
+      flex-direction: column; /* Pour empiler le logo au-dessus du texte */
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh; /* Utiliser min-height assure que ça couvre tout l'écran même sur mobile */
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
+      /* C'est la couleur de fond bleu foncé de la marque. 
+         Comme le logo est transparent, le blanc ressortira parfaitement dessus. */
+      background-color: #082d6e; 
+      padding: 20px; /* Ajoute un peu d'espace sur les petits écrans */
+      box-sizing: border-box;
     }
+
+    .logo {
+      /* Le logo s'adaptera : 80% de la largeur dispo, mais jamais plus de 300px de haut */
+      max-width: 80%;
+      max-height: 300px; 
+      height: auto; /* Maintient les proportions de l'image */
+      object-fit: contain;
+      margin-bottom: 30px; /* Espace entre le logo et le texte */
+    }
+
     #loading-text {
-      font-size: 24px;
+      font-size: 22px; /* Un peu plus petit sur mobile pour ne pas casser */
       font-weight: bold;
-      color: #333;
+      color: #ffffff; /* Texte en blanc */
+      text-align: center;
     }
   </style>
 </head>
 <body>
+  
+  <img src="norauto.png" alt="Logo" class="logo">
+  
   <div id="loading-text">Redirection</div>
 
   <script>
-    // Animation des points de suspension (plus rapide pour un effet fluide)
+    // Animation des points de suspension
     const loadingText = document.getElementById('loading-text');
     let dotCount = 0;
     
