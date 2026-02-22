@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Redirection</title>
+  <title>Redirection...</title>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CDBTZ8B3CX"></script>
   <script>
@@ -10,21 +10,24 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    // On configure la redirection pour qu'elle s'exécute APRÈS l'envoi des données
+    // On stocke l'URL de destination ici
+    const destinationUrl = "https://instagram.com/arthur_.grg";
+
+    // 1. Définition du timer de secours (si AdBlock bloque Google Analytics)
+    const fallbackTimer = setTimeout(function() {
+      window.location.href = destinationUrl;
+    }, 2500);
+
+    // 2. Configuration pour inclure la redirection après l'envoi des données
     gtag('config', 'G-CDBTZ8B3CX', {
       'event_callback': function() {
-        window.location.href = "https://instagram.com/arthur_.grg";
+        // On annule le timer de secours car le tracking a fonctionné
+        clearTimeout(fallbackTimer); 
+        window.location.href = destinationUrl;
       }
     });
-
-    // Sécurité : Redirection forcée après 2.5 secondes si le script est bloqué
-    setTimeout(function() {
-      if (window.location.hostname !== 'instagram.com') {
-        window.location.href = "https://instagram.com/arthur_.grg";
-      }
-    }, 2500);
   </script>
-
+  
   <style>
     body {
       display: flex;
@@ -46,10 +49,10 @@
   <div id="loading-text">Redirection</div>
 
   <script>
+    // Animation des points de suspension
     const loadingText = document.getElementById('loading-text');
     let dotCount = 0;
     
-    // Animation des points de suspension
     setInterval(() => {
       dotCount = (dotCount + 1) % 4;
       const dots = '.'.repeat(dotCount);
