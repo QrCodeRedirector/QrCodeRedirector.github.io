@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Redirection…</title>
+  <title>Redirection...</title>
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XGP68DHQ7K"></script>
   <script>
@@ -10,19 +10,22 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    // Configuration modifiée pour inclure la redirection après l'envoi des données
+    // On stocke l'URL de destination ici pour éviter de la répéter
+    const destinationUrl = "https://instagram.com/thi_box";
+
+    // 1. Définition du timer de secours (si AdBlock bloque Google Analytics)
+    const fallbackTimer = setTimeout(function() {
+      window.location.href = destinationUrl;
+    }, 2500);
+
+    // 2. Configuration modifiée pour inclure la redirection après l'envoi des données
     gtag('config', 'G-XGP68DHQ7K', {
       'event_callback': function() {
-        window.location.href = "https://instagram.com/thi_box";
+        // On annule le timer de secours car le tracking a fonctionné
+        clearTimeout(fallbackTimer); 
+        window.location.href = destinationUrl;
       }
     });
-
-    // Sécurité : redirection forcée après 2.5 secondes si le tag est bloqué (AdBlock, etc.)
-    setTimeout(function() {
-      if (window.location.hostname !== 'instagram.com') {
-        window.location.href = "https://instagram.com/thi_box";
-      }
-    }, 2500);
   </script>
   
   <style>
